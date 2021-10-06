@@ -1,0 +1,16 @@
+include(${PROJECT_SOURCE_DIR}/thirdparty/cmake/json.cmake)
+include(${PROJECT_SOURCE_DIR}/thirdparty/cmake/lua.cmake)
+include(${PROJECT_SOURCE_DIR}/thirdparty/cmake/toml.cmake)
+include(${PROJECT_SOURCE_DIR}/thirdparty/cmake/range-v3.cmake)
+
+function(target_thirdparty_include target)
+    target_lua_include(${target})
+    target_include_directories(${target} PRIVATE ${PROJECT_SOURCE_DIR}/thirdparty/include)
+endfunction()
+
+function(target_thirdparty_link target)
+    target_lua_link(${target})
+    target_json_link(${target})
+    target_toml_link(${target})
+    target_rangev3_link(${target})
+endfunction()

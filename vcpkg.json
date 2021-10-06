@@ -1,0 +1,12 @@
+{
+  "name": "lazy-file-generator",
+  "version-string": "0.0.1",
+  "homepage": "https://github.com/faserg1/LazyFileGenerator",
+  "dependencies": [
+    "toml11",
+    "nlohmann-json",
+    "lua",
+    "range-v3"
+  ]
+}
+

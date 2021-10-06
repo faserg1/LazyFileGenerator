@@ -1,0 +1,7 @@
+# Editor configuration, see http://editorconfig.org
+root = true
+
+[*.cpp]
+charset = utf-8bom
+indent_style = tab
+indent_size = 4
