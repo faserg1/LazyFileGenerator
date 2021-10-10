@@ -15,17 +15,17 @@ namespace lfg::source
         using reference         = symbol::ISourceSymbol&;
         using pointer           = symbol::ISourceSymbol*;
 
-        reference operator*() const { return *symbol; }
-        pointer operator->() { return &*symbol; }
+        reference operator*() const;
+        pointer operator->();
 
-        SourceIterator& operator++() { container->next(*this); return *this; }
-        SourceIterator operator++(int) { auto tmp = container->copy(*this); container->next(*this); return tmp; }
+        SourceIterator& operator++();
+        SourceIterator operator++(int);
 
-        friend bool operator== (const SourceIterator& a, const SourceIterator& b) { return a.symbol == b.symbol; };
-        friend bool operator!= (const SourceIterator& a, const SourceIterator& b) { return a.symbol != b.symbol; }; 
+        bool operator== (const SourceIterator&);
+        bool operator!= (const SourceIterator&);
     protected:
         SourceIterator(symbol::ISourceSymbol::Ptr s, container::SourceContainerBase::Ptr c,
-            container::SourceContainerBase::SourceContainerDataBase::Ptr d) : symbol(s), container(c), containerData(std::move(d)) {}
+            container::SourceContainerBase::SourceContainerDataBase::Ptr d);
         symbol::ISourceSymbol::Ptr symbol;
         container::SourceContainerBase::Ptr container;
         container::SourceContainerBase::SourceContainerDataBase::Ptr containerData;

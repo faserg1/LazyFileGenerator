@@ -1,7 +1,7 @@
 #include "WriterStd.hpp"
 using namespace lfg::io;
 
-WriterStd::WriterStd(std::string path) : stream_(path.c_str())
+WriterStd::WriterStd(std::string path) : stream_(path.c_str(), std::ios_base::trunc)
 {
 }
 

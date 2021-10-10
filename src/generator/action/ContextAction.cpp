@@ -6,7 +6,12 @@ ContextAction::ContextAction(std::string parameterName) : parameterName_(paramet
 
 }
 
-void ContextAction::Write(io::IWriter::Ptr writer, context::IContext::Ptr context)
+void ContextAction::write(io::IWriter::Ptr writer, context::IContext::Ptr context)
 {
-    auto value = context->findFirstParameter(parameterName_, {}, false);
+    auto param = context->findFirstParameter(parameterName_, {}, false);
+    if (param)
+    {
+        auto value = param->eval();
+        writer->write(reinterpret_cast<std::byte*>(value.data()), value.size());
+    }
 }

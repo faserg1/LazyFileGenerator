@@ -10,19 +10,26 @@ SourceVectorContainer::SourceVectorContainer(SymbolArray arr) : container_(std::
 
 bool SourceVectorContainer::back(SourceIterator &iter)
 {
-    auto data = getIteratorData(iter);
-    return false;
+    auto data = getIteratorData<SourceContainerDataVector>(iter);
+    data->iter--;
+    updateIterator(iter, *data->iter);
+    return true;
 }
 
 bool SourceVectorContainer::next(SourceIterator &iter)
 {
-    auto data = getIteratorData(iter);
-    return false;
+    auto data = getIteratorData<SourceContainerDataVector>(iter);
+    data->iter++;
+    source::symbol::ISourceSymbol::Ptr sym = {};
+    if (data->iter != container_.end())
+        sym = *data->iter;
+    updateIterator(iter, sym);
+    return true;
 }
 
 SourceIterator SourceVectorContainer::copy(SourceIterator &old)
 {
-    auto *data = dynamic_cast<SourceContainerDataVector*>(&getIteratorData(old));
+    auto data = getIteratorData<SourceContainerDataVector>(old);
     auto newData = std::make_unique<SourceContainerDataVector>();
     newData->iter = data->iter;
     return createIterator(*container_.begin(), shared_from_this(), std::move(newData));

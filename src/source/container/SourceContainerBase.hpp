@@ -28,10 +28,18 @@ namespace lfg::source
             virtual SourceIterator end() = 0;
         protected:
             void updateIterator(SourceIterator &iter, symbol::ISourceSymbol::Ptr symbol);
-            SourceContainerDataBase &getIteratorData(SourceIterator &iter) const;
+            template <class DataType>
+            DataType *getIteratorData(SourceIterator &iter) const
+            {
+                return dynamic_cast<DataType*>(internalGetContainerData(iter));
+            }
             SourceIterator createIterator(symbol::ISourceSymbol::Ptr s, container::SourceContainerBase::Ptr c,
                 container::SourceContainerBase::SourceContainerDataBase::Ptr d);
             SourceContainerBase() = default;
+            SourceContainerBase(const SourceContainerBase &) = delete;
+            SourceContainerBase(SourceContainerBase &&) = delete;
+        private:
+            container::SourceContainerBase::SourceContainerDataBase *internalGetContainerData(SourceIterator &iter) const;
         };
     }
 }

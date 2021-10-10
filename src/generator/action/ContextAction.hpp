@@ -10,7 +10,7 @@ namespace lfg::generator::action
     public:
         ContextAction(std::string parameterName);
 
-        void Write(io::IWriter::Ptr writer, context::IContext::Ptr context) override;
+        void write(io::IWriter::Ptr writer, context::IContext::Ptr context) override;
     private:
         std::string parameterName_;
     };

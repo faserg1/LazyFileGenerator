@@ -12,6 +12,8 @@ IParameter::Ptr EnvParameterProvider::findParameter(const std::string &name)
     if (cachedIt != cachedParameters_.end())
         return cachedIt->second;
     auto paramValue = std::getenv(name.c_str());
+    if (!paramValue)
+        return {};
     auto param = std::make_shared<EnvParameter>(name, paramValue);
     cachedParameters_.insert(std::make_pair(name, param));
     return param;

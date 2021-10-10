@@ -12,7 +12,7 @@ namespace lfg::generator::action
         using Ptr = std::shared_ptr<IAction>;
         virtual ~IAction() = default;
 
-        virtual void Write(io::IWriter::Ptr writer, context::IContext::Ptr context) = 0;
+        virtual void write(io::IWriter::Ptr writer, context::IContext::Ptr context) = 0;
     protected:
         IAction() = default;
     };

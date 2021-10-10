@@ -10,7 +10,7 @@ namespace lfg::generator::action
     public:
         TextAction(std::string txt);
 
-        void Write(io::IWriter::Ptr writer, context::IContext::Ptr context) override;
+        void write(io::IWriter::Ptr writer, context::IContext::Ptr context) override;
     private:
         std::string txt_;
     };
