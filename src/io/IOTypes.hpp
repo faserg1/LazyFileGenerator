@@ -7,4 +7,10 @@ namespace lfg::io
         None,
         StdFilestream,
     };
+
+    enum class WriterType
+    {
+        None,
+        StdFilestream,
+    };
 }

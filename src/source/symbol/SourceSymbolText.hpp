@@ -10,6 +10,7 @@ namespace lfg::source::symbol
         SourceSymbolText(std::string txt);
         const std::string& GetText() const;
         SymbolType GetType() const override;
+        ActionArray getActions() const override;
     private:
         const std::string txt_;
     };

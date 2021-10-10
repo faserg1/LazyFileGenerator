@@ -10,6 +10,7 @@ namespace lfg::source::symbol
         SourceSymbolParameter(std::string name);
         const std::string& GetName() const;
         SymbolType GetType() const override;
+        ActionArray getActions() const override;
     private:
         const std::string name_;
     };

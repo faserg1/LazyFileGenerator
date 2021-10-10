@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "IParameter.hpp"
+#include <context/parameters/IParameter.hpp>
 
 namespace lfg::context
 {
@@ -9,9 +9,11 @@ namespace lfg::context
     {
     public:
         using Ptr = std::shared_ptr<IContext>;
+        using ParameterSearchPriority = std::initializer_list<ParameterType>;
 
         virtual ~IContext() = default;
-        virtual std::vector<IParameter::Ptr> getParameters() = 0;
+        virtual IParameter::Ptr findFirstParameter(const std::string &name, 
+            const ParameterSearchPriority &priority, bool strong) const = 0;
     protected:
         IContext() = default;
     };

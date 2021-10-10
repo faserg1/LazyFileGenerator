@@ -1,5 +1,5 @@
 #include "RunnerGenerate.hpp"
-#include <io/ReaderFactory.hpp>
+#include <io/IOFactory.hpp>
 #include <parser/ParserFactory.hpp>
 #include <source/ISource.hpp>
 using namespace lfg::run;
@@ -14,7 +14,7 @@ RunnerGenerate::RunnerGenerate(std::string in, std::string out, ::lfg::parser::P
 
 void RunnerGenerate::run()
 {
-    auto reader = ReaderFactory::create(io::ReaderType::StdFilestream, in_);
+    auto reader = IOFactory::createReader(io::ReaderType::StdFilestream, in_);
     auto parser = ParserFactory::create(syntax_, reader, ParseMode::Normal);
     auto source = parser->readSource();
     for (auto &sym : *source)

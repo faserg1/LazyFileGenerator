@@ -9,6 +9,8 @@ namespace lfg::io
         using Ptr = std::shared_ptr<IWriter>;
 
         virtual ~IWriter() = default;
+
+        virtual size_t write(std::byte *buffer, size_t bufferSize) = 0;
     protected:
         IWriter() = default;
     };
